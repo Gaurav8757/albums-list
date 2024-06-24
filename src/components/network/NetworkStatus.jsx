@@ -25,7 +25,7 @@ const NetworkStatus = () => {
         </div>
       ) : (
         <div className="offline-status flex">
-          <img src="/no-wifi.png"  className="w-5 h-5" alt="Offline" />
+          <img src="/nowifi.png"  className="w-5 h-5" alt="Offline" />
           <span className='my-auto'>Offline</span>
         </div>
       )}
