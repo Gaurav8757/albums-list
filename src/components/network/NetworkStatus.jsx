@@ -20,12 +20,12 @@ const NetworkStatus = () => {
     <div className="network-status">
       {isOnline ? (
         <div className="online-status">
-          <img src="/wifi.png"  className="w-8 h-8" alt="Online" />
+          <img src="/wifi.png"  className="w-5 h-5" alt="Online" />
         
         </div>
       ) : (
         <div className="offline-status flex">
-          <img src="/no-wifi.png"  className="w-8 h-8" alt="Offline" />
+          <img src="/no-wifi.png"  className="w-5 h-5" alt="Offline" />
           <span className='my-auto'>Offline</span>
         </div>
       )}
