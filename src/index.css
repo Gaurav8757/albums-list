@@ -13,6 +13,18 @@
       0 0 10px rgb(17, 255, 0),
       0 0 30px rgb(17, 255, 0);
   }
+
+  
+
+  .shadow-custom1 {
+    /* Customize the shadow layers */
+    box-shadow:
+      0 0 2px #fff,
+      inset 0 0 2px #fff,
+      0 0 5px rgb(0, 119, 255),
+      0 0 1px rgb(34, 0, 255),
+      0 0 10px rgb(255, 255, 255);
+  }
   
   .loader {
     --dim: 3rem;
@@ -40,6 +52,11 @@
 
   .loader .circle:nth-child(4) {
     @apply bottom-0 right-0 bg-blue-500;
+  }
+
+  .hover\:show-buttons:hover .hidden {
+    @apply block transition-all duration-150;
+   
   }
 
   @keyframes spin988 {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import axios from 'axios';
+import debounce from 'lodash.debounce';
 
 const AddAlbum = () => {
   const { userId } = useParams();
@@ -26,70 +26,79 @@ const AddAlbum = () => {
     setAlbums(albums.filter(album => album.id !== imageId));
   };
 
-  const updateTitle = (imageId, newTitle) => {
+  const updateTitle = debounce((imageId, newTitle) => {
     setAlbums(albums.map(album => album.id === imageId ? { ...album, title: newTitle } : album));
     setEditingImageId(null);
+  }, 3000); // Debounce with 2 second delay
+
+  const handleEditClick = (image) => {
+    setEditingImageId(image.id);
+    setNewTitle(image.title);
+  };
+
+  const handleTitleChange = (e) => {
+    const newTitle = e.target.value;
+    setNewTitle(newTitle);
+    updateTitle(editingImageId, newTitle);
   };
 
   if (loading) {
-    return  <div className="flex items-center justify-center h-screen bg-gray-950">
-    <div className="loader">
-    <div className="circle"></div>
-    <div className="circle"></div>
-    <div className="circle"></div>
-    <div className="circle"></div>
-</div>
-</div>
-;
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-950">
+        <div className="loader">
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+        </div>
+      </div>
+    );
   }
 
   const userAlbums = albums.filter(album => album.userId === parseInt(userId, 10));
 
   return (
-    <section className= "bg-gray-950 h-screen text-white">
+    <section className="bg-gray-950 h-screen text-white">
     <div className="p-4">
-      <h2 className="text-2xl flex mb-8 tems-center justify-center">User {userId} Albums</h2>
-      <div className="grid grid-cols-5 gap-4">
+      <h2 className="text-2xl flex mb-8 items-center justify-center shadow-custom1 py-1">User {userId} Albums</h2>
+      <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-4 grid-cols-3 gap-8">
         {userAlbums.map(image => (
-          <div key={image.id} className="relative  border p-2 ">
-            <img src={`https://via.placeholder.com/150?text=${image.title}`} alt={image.title} />
-            <h3>{image.title}</h3>
+          <div key={image.id} className="relative flex flex-col shadow-2xl shadow-slate-500 border-none shadow-custom1 items-center rounded border mx-auto w-40 sm:w-44 lg:w-60 xl:w-64 h-44 sm:h-48 lg:h-64 xl:h-72 p-2 hover:show-buttons">
+            <img src={`https://via.placeholder.com/200/23508720/FFFFFF?text=${image.title}`} className="mx-auto text-xl text-red-800" alt={image.title} />
+            
+            <h2 className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center"> {image.id}</h2>
+            
             <button
-              className="absolute bottom-0 left-0 bg-red-600 rounded text-white px-2"
+              className="absolute bottom-0 left-0 bg-red-600 rounded text-white px-2 hidden"
               onClick={() => deleteGrid(image.id)}
             >
               X
             </button>
+            
             <button
-              className="absolute bottom-0 right-0 bg-blue-500 rounded text-white px-2"
-              onClick={() => setEditingImageId(image.id)}
+              className="absolute bottom-0 right-0 bg-blue-500 rounded text-white px-2 hidden"
+              onClick={() => handleEditClick(image)}
             >
               Edit
             </button>
+            
             {editingImageId === image.id && (
-              <div className="absolute bottom-1 left-0 bg-transparent p-2 shadow-md">
+              <div className="absolute focus:ring-none bottom-4 left-1/2 transform -translate-x-1/2 bg-inherit p-2 shadow-md">
                 <input
                   type="text"
                   value={newTitle}
-                  onChange={(e) => setNewTitle(e.target.value)}
-                  className="border p-1 bg-transparent text-white"
+                  onChange={handleTitleChange}
+                  className="border p-1 text-black font-medium"
                 />
-                <button
-                  onClick={() => updateTitle(image.id, newTitle)}
-                  className="bg-green-500 text-white px-2"
-                >
-                  Save
-                </button>
               </div>
             )}
           </div>
         ))}
       </div>
     </div>
-    </section>
+  </section>
+  
   );
 };
-
-
 
 export default AddAlbum;
