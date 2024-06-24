@@ -63,7 +63,7 @@ const AddAlbum = () => {
       <h2 className="text-xl flex mb-8 items-center justify-center shadow-custom1 py-0.5">User {userId} Albums</h2>
       <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-4 grid-cols-3 gap-8">
         {userAlbums.map(image => (
-          <div key={image.id} className="relative flex flex-col shadow-2xl shadow-slate-500 border-none shadow-custom1 items-center rounded border mx-auto w-32 sm:w-40 lg:w-52 xl:w-60 h-36 sm:h-44 lg:h-60 xl:h-64 p-2 hover:show-buttons">
+          <div key={image.id} className="relative flex flex-col shadow-2xl shadow-slate-500 border-none shadow-custom1 items-center rounded border mx-auto w-32 sm:w-40 lg:w-48 xl:w-52 h-36 sm:h-44 lg:h-52 xl:h-60 p-1 hover:show-buttons">
             <img src={`https://via.placeholder.com/200/23508720/FFFFFF?text=${image.title}`} className="mx-auto text-xl text-red-800" alt={image.title} />
             
             <h2 className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center"> {image.id}</h2>
