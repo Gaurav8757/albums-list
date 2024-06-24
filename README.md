@@ -34,10 +34,15 @@ album-list/
 │    ├── assets
 │    ├── components
 │    │        ├── albums
-│    │        │      └── AddAlbum.jsx
-│    │        ├── network
-│    │        │      └── NetworkStatus.jsx
-│    │        └── Header.jsx
+│    │        │     ├── AddAlbum.jsx
+│    │        │     └── Album.jsx
+│    │        ├── app
+│    │        │    └── App.jsx
+│    │        │
+│    │        ├── header
+│    │        │     └── Header.jsx
+│    │        └── network
+│    │              └── NetworkStatus.jsx
 │    │
 │    ├── App.jsx
 │    ├── index.css
