@@ -5,7 +5,7 @@
 @layer utilities {
 
   .shadow-custom {
-    /* Customize the shadow layers */
+    /* Customize the shadow layers for Album text underline neon color glow*/
     box-shadow:
       0 0 2px #fff,
       inset 0 0 2px #fff,
@@ -14,10 +14,9 @@
       0 0 30px rgb(17, 255, 0);
   }
 
-  
 
   .shadow-custom1 {
-    /* Customize the shadow layers */
+    /* Customize the shadow layers for Album border neon color glow*/
     box-shadow:
       0 0 2px #fff,
       inset 0 0 2px #fff,
@@ -25,7 +24,9 @@
       0 0 1px rgb(34, 0, 255),
       0 0 10px rgb(255, 255, 255);
   }
-  
+
+
+  /* Relate to samsung loader */
   .loader {
     --dim: 3rem;
     @apply w-[var(--dim)] h-[var(--dim)] relative;
@@ -59,6 +60,7 @@
    
   }
 
+/* Loader Animation  */
   @keyframes spin988 {
     0% {
       transform: scale(0.8) rotate(0);
